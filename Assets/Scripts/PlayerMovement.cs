@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;    
     void Start()
     {
-        
+        controller  = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -20,20 +20,21 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        //Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        //Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        move = move.normalized;
         
-        controller.Move(direction * speed * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime);
 
         // Ground Check
-        //if (Physics.CheckSphere(GroundCheck.position, GroundCheckRadius, groundLayer))
-        //{
-        //    isGrounded = true;
-        //    Debug.Log("Ground");
-        //} else {
-        //    controller.Move(-Vector3.up * gravityValue * Time.deltaTime);
-        //}
+        if (Physics.CheckSphere(GroundCheck.position, GroundCheckRadius, groundLayer))
+        {
+           isGrounded = true;
+           Debug.Log("Ground");
+        } else {
+           controller.Move(-Vector3.up * gravityValue * Time.deltaTime);
+        }
 
         
     }
