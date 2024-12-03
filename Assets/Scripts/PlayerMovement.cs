@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using System;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,8 +14,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform GroundCheck;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float soundDuration = 2;
-    [SerializeField] float size = 3;
+    [SerializeField] float echoRadius = 3;
     [SerializeField] GameObject EcholocationPrefab;
+    [SerializeField] float alertRadius = 10;
+    [SerializeField] float enemyLayer = 2;
 
     private bool isGrounded;    
     private float lastSoundStart;
@@ -56,15 +61,30 @@ public class PlayerMovement : MonoBehaviour
 
     void SpawnSoundWave(){
         GameObject echoLocator = Instantiate(EcholocationPrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
-        ParticleSystem echoWave = EcholocationPrefab.transform.GetChild(0).GetComponent<ParticleSystem>();
+        ParticleSystem echoWave = echoLocator.transform.GetChild(0).GetComponent<ParticleSystem>();
 
         if (echoWave != null){
             var main = echoWave.main;
             main.startLifetime = soundDuration;
-            main.startSize = size;
+            main.startSize = echoRadius;
         }else{
             Debug.Log("Empty/Erroneous echolocator\n");
         }
+
+        //Checking enemies
+        Collider[] colliders= Physics.OverlapSphere(echoLocator.transform.position, alertRadius);
+        foreach (var col in colliders){
+            //Debug.Log(col.gameObject.tag);
+            if (col.gameObject.tag == "Enemy Body"){
+                EcholocationSignal signalScript = col.gameObject.GetComponentInParent<EcholocationSignal>();
+                //Debug.Log("Enemy Found!");
+                if (signalScript != null){
+                    Debug.Log("adding sound");
+                    signalScript.objectsDetected.Add(new Vector2 (echoLocator.GetInstanceID(), Time.realtimeSinceStartup));
+                }
+            }
+        }
+
 
 
         Destroy(echoLocator, soundDuration + 1);
