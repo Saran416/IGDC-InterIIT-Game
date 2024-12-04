@@ -413,6 +413,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 607924423826658180, guid: 517f5b7873d118a46b0ec74bba05c09a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.944
+      objectReference: {fileID: 0}
+    - target: {fileID: 607924423826658180, guid: 517f5b7873d118a46b0ec74bba05c09a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.878
+      objectReference: {fileID: 0}
     - target: {fileID: 999147650744031964, guid: 517f5b7873d118a46b0ec74bba05c09a,
         type: 3}
       propertyPath: m_Name
@@ -468,6 +478,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5836972850639135191, guid: 517f5b7873d118a46b0ec74bba05c09a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836972850639135191, guid: 517f5b7873d118a46b0ec74bba05c09a,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ef3bf376fbd52e744831468c681a58ba, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3216579634196930436, guid: 517f5b7873d118a46b0ec74bba05c09a, type: 3}
@@ -1748,6 +1768,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5836972850639135191, guid: bc601338671f3624792bf7ba518c74d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 406462719488981747, guid: bc601338671f3624792bf7ba518c74d9, type: 3}
@@ -2062,6 +2087,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5998495535777341245, guid: b77ccd71d9d83e24894325cc680385e3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998495535777341245, guid: b77ccd71d9d83e24894325cc680385e3,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ef3bf376fbd52e744831468c681a58ba, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6106780103635766758, guid: b77ccd71d9d83e24894325cc680385e3, type: 3}
@@ -3543,9 +3578,9 @@ MonoBehaviour:
   lidar_vfx: {fileID: 1716949801}
   V_OFFSET: 0.3
   H_OFFSET: 0.3
-  maxPoints: 2000
+  maxPoints: 8000
   lidarPoints: []
-  pointLife: 20
+  pointLife: 30
   lidarCooldown: 0.001
 --- !u!1001 &676776367
 PrefabInstance:
@@ -5235,7 +5270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1133493202
 Light:
   m_ObjectHideFlags: 0
@@ -5243,7 +5278,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133493201}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
@@ -5585,6 +5620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4391816641657039646, guid: 517f5b7873d118a46b0ec74bba05c09a,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ef3bf376fbd52e744831468c681a58ba, type: 2}
     - target: {fileID: 4517860329868026815, guid: 517f5b7873d118a46b0ec74bba05c09a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5635,6 +5675,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5836972850639135191, guid: 517f5b7873d118a46b0ec74bba05c09a,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ef3bf376fbd52e744831468c681a58ba, type: 2}
     - target: {fileID: 8325595534933985272, guid: 517f5b7873d118a46b0ec74bba05c09a,
         type: 3}
       propertyPath: m_Enabled
@@ -6894,6 +6939,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obelisk Room
       objectReference: {fileID: 0}
+    - target: {fileID: 1674177472831543483, guid: ff0ab276c09032a419b55a9df964ce5a,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ef3bf376fbd52e744831468c681a58ba, type: 2}
     - target: {fileID: 4517860329868026815, guid: ff0ab276c09032a419b55a9df964ce5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7450,7 +7500,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716949799}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 5fa79b9ffb39244498cf64a878b5210b, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 6792ff98221641247af07c6ab4da4a55, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
