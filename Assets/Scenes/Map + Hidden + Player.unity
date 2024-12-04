@@ -3495,9 +3495,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPoints: 80
-  lidar_vfx: {fileID: 1716949801}
+  lidar_vfxes: []
   lidarPoints: []
   lidarDirections: []
+  canShootList: 
+  lidarDuration: 60
 --- !u!1001 &676776367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5186,7 +5188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1133493202
 Light:
   m_ObjectHideFlags: 0
