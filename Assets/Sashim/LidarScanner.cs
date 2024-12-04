@@ -7,13 +7,13 @@ public class LidarScanner : MonoBehaviour
 {
     public VisualEffect lidar_vfx;
 
-    public float V_OFFSET = 20;
-    public float H_OFFSET = 20;
+    public float V_OFFSET = .3f;
+    public float H_OFFSET = .3f;
 
-    public int maxPoints = 100;
+    public int maxPoints = 2000;
     public List<Vector3> lidarPoints;
-    public float pointLife = 5f;
-    public float lidarCooldown = 0.1f;
+    public float pointLife = 20f;
+    public float lidarCooldown = 0.001f;
 
     List<float> pointAge;
     int positionBufferProp;
