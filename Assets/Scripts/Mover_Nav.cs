@@ -44,8 +44,12 @@ public class MoveTable_nav : MonoBehaviour
         else if (state == States.IDLE){
             System.Random rnd = new System.Random();
             int rndindex = rnd.Next(Moveables.Length);
-            GameObject rndGameObject = Moveables[rndindex];
-            if (!Nav_Agent.pathPending){
+            Debug.Log("I need shawarma: " + rndindex + " " + " " + Moveables.Length);
+            GameObject rndGameObject = grabbed;
+            if (Moveables.Length != 0){
+                rndGameObject = Moveables[rndindex];
+            }
+            if (!Nav_Agent.pathPending && rndGameObject != null){
                 if (Nav_Agent.remainingDistance <= Nav_Agent.stoppingDistance){
                     if (!Nav_Agent.hasPath || Nav_Agent.velocity.sqrMagnitude == 0f){
                         if (idle_state == IDLE_STATES.TOPICK){

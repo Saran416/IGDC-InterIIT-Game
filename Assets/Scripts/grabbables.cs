@@ -8,6 +8,7 @@ public class grabbables : MonoBehaviour
     private Rigidbody grabTransfrom;
     private MeshCollider meshCollider;
     private Transform grab_point;
+    
     private void Awake()
     {
         grab_point = null;
@@ -16,18 +17,30 @@ public class grabbables : MonoBehaviour
     }
     public void Grab(Transform grab_point_transform){
         this.grab_point = grab_point_transform;
+        grabTransfrom.isKinematic = true;
         grabTransfrom.useGravity = false;
         meshCollider.enabled = false;
+        
 
     }
     public void Drop(){
         this.grab_point = null;
         grabTransfrom.useGravity = true;
         meshCollider.enabled = true;
+        
+        grabTransfrom.isKinematic=false;
+        meshCollider.convex = true;
         {
-            
+            StartCoroutine(makeKinematic());
         }
     }
+
+    IEnumerator makeKinematic(){
+        yield return new WaitForSeconds(1);
+        grabTransfrom.isKinematic = true;
+        meshCollider.convex = false;
+    }
+
     private void FixedUpdate()
     {
         if (grab_point != null){
