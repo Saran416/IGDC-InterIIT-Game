@@ -9,14 +9,14 @@ public class Creeper_nav : MonoBehaviour
 {
     private Transform player_Transform;
     [SerializeField]
-    private float Walk_radius;
+    protected float Walk_radius;
     [SerializeField]
-    private float wait_time;
+    protected float wait_time;
     private enum State {idle,active}; // idle -> player haven't detected,active -> player has been detected.
     private State state; 
     private SphereCollider deducting_sphere;
     private NavMeshAgent Nav_Agent;
-    private Vector3 Destination;
+    protected Vector3 Destination;
     private void Awake()
     {
         Nav_Agent = GetComponent<NavMeshAgent>();
