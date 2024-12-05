@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float punchWaveDuration = 4f;
 
     [SerializeField] public Camera leCam;
+    [SerializeField] public bool safe;
 
     private bool isGrounded;    
     private float lastSoundStart;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float lastPunchTime;
     void Start()
     {
+        safe = false;
         controller  = GetComponent<CharacterController>();
         lastSoundStart = -soundDuration - 1;
         lastPunchTime = -punchDelay - 1;
@@ -88,15 +90,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Checking enemies
-        Collider[] colliders= Physics.OverlapSphere(echoLocator.transform.position, alertRadius);
-        foreach (var col in colliders){
-            //Debug.Log(col.gameObject.tag);
-            if (col.gameObject.tag == "Enemy Body"){
-                EcholocationSignal signalScript = col.gameObject.GetComponentInParent<EcholocationSignal>();
-                //Debug.Log("Enemy Found!");
-                if (signalScript != null){
-                    Debug.Log("adding sound");
-                    signalScript.objectsDetected.Add(new Vector2 (echoLocator.GetInstanceID(), Time.realtimeSinceStartup));
+        if (!safe){
+            Collider[] colliders= Physics.OverlapSphere(echoLocator.transform.position, alertRadius);
+            foreach (var col in colliders){
+                //Debug.Log(col.gameObject.tag);
+                if (col.gameObject.tag == "Enemy Body"){
+                    EcholocationSignal signalScript = col.gameObject.GetComponentInParent<EcholocationSignal>();
+                    //Debug.Log("Enemy Found!");
+                    if (signalScript != null){
+                        Debug.Log("adding sound");
+                        signalScript.objectsDetected.Add(new Vector2 (echoLocator.GetInstanceID(), Time.realtimeSinceStartup));
+                    }
                 }
             }
         }
@@ -164,15 +168,17 @@ public class PlayerMovement : MonoBehaviour
         float tagRadius = mode ? echoRadius/2 : punchWaveRadius; //inform enemies loaded by audio
 
         //Checking enemies
-        Collider[] colliders= Physics.OverlapSphere(echoLocator.transform.position, punchWaveRadius);
-        foreach (var col in colliders){
-            //Debug.Log(col.gameObject.tag);
-            if (col.gameObject.tag == "Enemy Body"){
-                EcholocationSignal signalScript = col.gameObject.GetComponentInParent<EcholocationSignal>();
-                //Debug.Log("Enemy Found!");
-                if (signalScript != null){
-                    Debug.Log("adding sound");
-                    signalScript.objectsDetected.Add(new Vector2 (echoLocator.GetInstanceID(), Time.realtimeSinceStartup));
+        if (!safe){
+            Collider[] colliders= Physics.OverlapSphere(echoLocator.transform.position, punchWaveRadius);
+            foreach (var col in colliders){
+                //Debug.Log(col.gameObject.tag);
+                if (col.gameObject.tag == "Enemy Body"){
+                    EcholocationSignal signalScript = col.gameObject.GetComponentInParent<EcholocationSignal>();
+                    //Debug.Log("Enemy Found!");
+                    if (signalScript != null){
+                        Debug.Log("adding sound");
+                        signalScript.objectsDetected.Add(new Vector2 (echoLocator.GetInstanceID(), Time.realtimeSinceStartup));
+                    }
                 }
             }
         }

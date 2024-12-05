@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EcholocationSignal : MonoBehaviour
 {
-
+    public PlayerMovement player_script;
     [SerializeField]public List<Vector2> objectsDetected;
     private List<Vector2> objectsToDelete;
     [SerializeField] float soundMemoryDuration = 15;
@@ -28,7 +28,6 @@ public class EcholocationSignal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         lastHeartBeatTime = -heartBeatDuration - 1;
         objectsToDelete = new List<Vector2>();
         objectsDetected = new List<Vector2>();
@@ -37,6 +36,7 @@ public class EcholocationSignal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        objectsToDelete = new List<Vector2>();
         foreach (var obj in objectsDetected){
             if (obj[1] + soundMemoryDuration < Time.realtimeSinceStartup){
                 objectsToDelete.Add(obj);
@@ -45,7 +45,7 @@ public class EcholocationSignal : MonoBehaviour
         }
 
         //Debug.Log("Before If");
-        if (objectsDetected.Count - objectsToDelete.Count > maximumSounds){
+        if (objectsDetected.Count - objectsToDelete.Count > maximumSounds && !player_script.safe){
             Debug.Log("if works\n");
             if (!isAggro){
                 SpawnTagWave();
@@ -81,7 +81,7 @@ public class EcholocationSignal : MonoBehaviour
     }
 
     void SpawnTagWave(){
-        GameObject tagger = Instantiate(EcholocationPrefabTag, gameObject.transform.position, Quaternion.identity) as GameObject;
+        GameObject tagger = Instantiate(EcholocationPrefabTag, gameObject.transform.GetChild(0).position, Quaternion.identity) as GameObject;
         ParticleSystem tagWave = tagger.transform.GetChild(0).GetComponent<ParticleSystem>();
 
         if (tagWave != null){
