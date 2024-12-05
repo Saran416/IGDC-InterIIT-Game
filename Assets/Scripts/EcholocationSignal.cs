@@ -66,7 +66,7 @@ public class EcholocationSignal : MonoBehaviour
     }
 
     void SpawnHeartWave(){
-        GameObject heart = Instantiate(EcholocationPrefabHeart, gameObject.transform.position, Quaternion.identity) as GameObject;
+        GameObject heart = Instantiate(EcholocationPrefabHeart, gameObject.transform.GetChild(0).position, Quaternion.identity) as GameObject;
         ParticleSystem heartWave = heart.transform.GetChild(0).GetComponent<ParticleSystem>();
 
         if (heartWave != null){
