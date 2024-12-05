@@ -75,6 +75,9 @@ public class LidarScanner : MonoBehaviour
                     case 15:
                         lidarPointsColor.Add(colors[5]);
                         break;
+                    case 16:
+                        lidarPointsColor.Add(colors[6]);
+                        break;
                     default:
                         lidarPointsColor.Add(colors[0]);
                         break;

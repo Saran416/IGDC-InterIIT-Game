@@ -122,6 +122,10 @@ public class PlayerMovement : MonoBehaviour
             if (objectHit.gameObject.tag == "BreakableWall"){
                 Destroy(objectHit.gameObject);
                 punchWaveSmall = true;
+            }else if(objectHit.gameObject.tag == "BreakableWallBack"){
+                Debug.Log("So i hit the child");
+                Destroy(objectHit.transform.parent.gameObject);
+                punchWaveSmall = true;
             }else if(objectHit.gameObject.GetComponent<MeshRenderer>() == null){ 
                 //Debug.Log("searching in children");
                     if (objectHit.GetComponentInChildren<MeshRenderer>() != null){
