@@ -12,20 +12,27 @@ public class LidarScanner : MonoBehaviour
 
     public int maxPoints = 2000;
     public List<Vector3> lidarPoints;
+    public List<Color> lidarPointsColor;
     public float pointLife = 20f;
     public float lidarCooldown = 0.001f;
+    public Color[] colors;
 
     List<float> pointAge;
     int positionBufferProp;
+    int colorBufferProp;
     int pointCountProp;
     float lastPointTime = 0f;
 
     int pointCount = 0;
     GraphicsBuffer positionBuffer;
     GraphicsBuffer directionBuffer;
+    GraphicsBuffer colorBuffer;
     void Awake(){
+
         positionBufferProp = Shader.PropertyToID("positionBuffer");
+        colorBufferProp = Shader.PropertyToID("colorBuffer");
         lidar_vfx.SetGraphicsBuffer(positionBufferProp, positionBuffer);
+        lidar_vfx.SetGraphicsBuffer(colorBufferProp, colorBuffer);
 
         pointCountProp = Shader.PropertyToID("pointCount");
     }
@@ -34,6 +41,7 @@ public class LidarScanner : MonoBehaviour
         pointAge = new List<float>();
         lidarPoints = new List<Vector3>();
         positionBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, maxPoints, sizeof(float) * 3);
+        colorBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, maxPoints, sizeof(float) * 4);
 
         lidar_vfx.SetFloat("Lifetime", pointLife);
     }
@@ -50,6 +58,27 @@ public class LidarScanner : MonoBehaviour
                 pointAge.Add(pointLife);
                 pointCount++;
                 lastPointTime = Time.time;
+                
+                switch (hit.collider.gameObject.layer) {
+                    case 11:
+                        lidarPointsColor.Add(colors[1]);
+                        break;
+                    case 12:
+                        lidarPointsColor.Add(colors[2]);
+                        break;
+                    case 13:
+                        lidarPointsColor.Add(colors[3]);
+                        break;
+                    case 14:
+                        lidarPointsColor.Add(colors[4]);
+                        break;
+                    case 15:
+                        lidarPointsColor.Add(colors[5]);
+                        break;
+                    default:
+                        lidarPointsColor.Add(colors[0]);
+                        break;
+                }
             }
             lidar_vfx.Play();
             // for (int i = 0; i < maxPoints; i++){
@@ -66,11 +95,14 @@ public class LidarScanner : MonoBehaviour
             if (pointAge[i] <= 0){
                 pointAge.RemoveAt(i);
                 lidarPoints.RemoveAt(i);
+                lidarPointsColor.RemoveAt(i);
                 pointCount--;
                 i--;
             }
         }
         positionBuffer.SetData(lidarPoints);
+        colorBuffer.SetData(lidarPointsColor);
+        lidar_vfx.SetGraphicsBuffer(colorBufferProp, colorBuffer);
         lidar_vfx.SetGraphicsBuffer(positionBufferProp, positionBuffer);
         
     }

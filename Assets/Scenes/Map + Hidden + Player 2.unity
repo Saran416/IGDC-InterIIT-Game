@@ -206,6 +206,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1007636084559107959, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1395476934231950728, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -256,15 +261,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3978424380926388558, guid: dea38bc162435444a8cf43b81fe70fb9,
+    - target: {fileID: 1420559970689652167, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
-      propertyPath: leCam
-      value: 
-      objectReference: {fileID: 652351289}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293876883736330753, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3497435730567891607, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: m_StepOffset
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3978424380926388558, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
       propertyPath: speed
-      value: 3
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067090019700006501, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.296
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500796112017118540, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6674394932307026479, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
@@ -273,8 +298,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7287701908156724623, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 7287701908156724623, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287701908156724623, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8024899366279361154, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -283,7 +324,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1420559970689652167, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 652351284}
+      addedObject: {fileID: 652351290}
   m_SourcePrefab: {fileID: 100100000, guid: dea38bc162435444a8cf43b81fe70fb9, type: 3}
 --- !u!1001 &28512135
 PrefabInstance:
@@ -1971,6 +2012,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2370706920258748540, guid: b77ccd71d9d83e24894325cc680385e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4517860329868026815, guid: b77ccd71d9d83e24894325cc680385e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3487,7 +3533,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 27970494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &652351284
+--- !u!114 &652351290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3496,21 +3542,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 652351282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57a28733709504499c0a9cc2d5fbcb4, type: 3}
+  m_Script: {fileID: 11500000, guid: b80bd2fcb4624194abf259f29a7e6f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPoints: 80
-  lidar_vfxes: []
+  lidar_vfx: {fileID: 1716949801}
+  V_OFFSET: 0.3
+  H_OFFSET: 0.3
+  maxPoints: 2000
   lidarPoints: []
-  lidarDirections: []
-  canShootList: 
-  lidarDuration: 60
---- !u!20 &652351289 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3489344054562238089, guid: dea38bc162435444a8cf43b81fe70fb9,
-    type: 3}
-  m_PrefabInstance: {fileID: 27970494}
-  m_PrefabAsset: {fileID: 0}
+  lidarPointsColor: []
+  pointLife: 20
+  lidarCooldown: 0.001
+  colors:
+  - {r: 0, g: 1, b: 0.96862745, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.99607843, g: 0.7764706, b: 0.003921569, a: 1}
+  - {r: 0.5176471, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.6313726, a: 1}
 --- !u!1001 &676776367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5199,7 +5247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1133493202
 Light:
   m_ObjectHideFlags: 0
@@ -7414,7 +7462,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716949799}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 1265c703a4ac0c249810557601859c3b, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 5fa79b9ffb39244498cf64a878b5210b, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -7423,7 +7471,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: Lifetime
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -7435,7 +7486,7 @@ VisualEffect:
     m_Int:
       m_Array:
       - m_Value: 0
-        m_Name: SpawnProp
+        m_Name: pointCount
         m_Overridden: 1
     m_Matrix4x4f:
       m_Array: []
