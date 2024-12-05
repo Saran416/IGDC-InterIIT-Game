@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class soundproof_area : MonoBehaviour
 {
-    [SerializeField]
-    private EcholocationSignal signal;
+    //[SerializeField]
+    //private EcholocationSignal signal;
     BoxCollider soundprood_collider;
     private void Awake(){
         soundprood_collider = GetComponent<BoxCollider>();
@@ -15,14 +15,14 @@ public class soundproof_area : MonoBehaviour
     {
         if (other.tag == "Player"){
             other.GetComponent<PlayerMovement>().safe = true;
-            signal.isAggro = false;
+            //signal.isAggro = false;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player"){
             other.GetComponent<PlayerMovement>().safe = true;
-            signal.isAggro = false;
+            //signal.isAggro = false;
         }
     }
     private void OnTriggerExit(Collider other) {

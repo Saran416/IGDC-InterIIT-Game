@@ -52,6 +52,9 @@ public class EcholocationSignal : MonoBehaviour
             }
             isAggro = true;
         }
+        if (player_script.safe){
+            isAggro = false;
+        }
 
         foreach(var obj in objectsToDelete){
             objectsDetected.Remove(obj);
