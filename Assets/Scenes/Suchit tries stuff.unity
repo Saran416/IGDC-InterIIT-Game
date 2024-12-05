@@ -284,8 +284,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3978424380926388558, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
+      propertyPath: leCam
+      value: 
+      objectReference: {fileID: 652351295}
+    - target: {fileID: 3978424380926388558, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
       propertyPath: speed
-      value: 3
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978424380926388558, guid: dea38bc162435444a8cf43b81fe70fb9,
+        type: 3}
+      propertyPath: punchDelay
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4067090019700006501, guid: dea38bc162435444a8cf43b81fe70fb9,
         type: 3}
@@ -4273,6 +4283,12 @@ MonoBehaviour:
   lidarPoints: []
   pointLife: 30
   lidarCooldown: 0.001
+--- !u!20 &652351295 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3489344054562238089, guid: dea38bc162435444a8cf43b81fe70fb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 27970494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &676776367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6536,7 +6552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1133493202
 Light:
   m_ObjectHideFlags: 0
