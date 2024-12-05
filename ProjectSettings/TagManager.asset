@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - floor
+  - 
   - Water
   - UI
   - 
@@ -18,11 +18,7 @@ TagManager:
   - 
   - 
   - 
-<<<<<<< Updated upstream
   - Enemy
-=======
-  - red
->>>>>>> Stashed changes
   - 
   - 
   - 
