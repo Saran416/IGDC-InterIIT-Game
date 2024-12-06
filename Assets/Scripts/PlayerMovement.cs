@@ -26,17 +26,21 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] public Camera leCam;
     [SerializeField] public bool safe;
+    public List<int> keys;
+    public bool canPickKey;
 
     private bool isGrounded;    
     private float lastSoundStart;
 
     private float lastPunchTime;
+
     void Start()
     {
         safe = false;
         controller  = GetComponent<CharacterController>();
         lastSoundStart = -soundDuration - 1;
         lastPunchTime = -punchDelay - 1;
+        keys = new List<int>();
 
     }
 
@@ -73,6 +77,23 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Something was punched bro");
             Punch();
 
+        }
+
+        RaycastHit hit;
+        Ray ray = leCam.ViewportPointToRay(Vector2.one * 0.5f);
+        
+        if (Physics.Raycast(ray, out hit, armLength)) {
+            Transform objectHit = hit.transform;
+            if (objectHit.gameObject.tag == "Key"){
+                //SHOW "E to pick up"
+                canPickKey = true;
+                if (Input.GetKeyDown(KeyCode.E)){
+                    keys.Add(objectHit.gameObject.layer - 10);
+                    Destroy(objectHit.parent.parent.gameObject);
+                }
+            }else{
+                canPickKey = false;
+            }
         }
 
     }
