@@ -44,7 +44,6 @@ public class MoveTable_nav : MonoBehaviour
         else if (state == States.IDLE){
             System.Random rnd = new System.Random();
             int rndindex = rnd.Next(Moveables.Length);
-            Debug.Log("I need shawarma: " + rndindex + " " + " " + Moveables.Length);
             GameObject rndGameObject = grabbed;
             if (Moveables.Length != 0){
                 rndGameObject = Moveables[rndindex];
