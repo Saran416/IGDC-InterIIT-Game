@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     public List<int> keys;
     public bool canPickKey;
+    public bool canOpenChest;
 
     private bool isGrounded;
     private float lastSoundStart;
@@ -107,19 +108,24 @@ public class PlayerMovement : MonoBehaviour
                     Destroy(objectHit.parent.parent.gameObject);
                 }
             }
-            if (objectHit.gameObject.tag == "chest"){
+            else if (objectHit.gameObject.tag == "chest"){
                 // Show "E to open"
-                if (Input.GetKeyDown(KeyCode.E)){
-                    objectHit.gameObject.GetComponentInParent<Animation>().Play("Open");
+                if (keys.Contains(objectHit.gameObject.layer-10) ){
+                    canOpenChest = true;
+                    if (Input.GetKeyDown(KeyCode.E)){
+                        objectHit.gameObject.GetComponentInParent<Animation>().Play("Open");
+                        keys.Remove(objectHit.gameObject.layer-10);
+                    }
                 }
-            }
-            
-            else
-            {
+            }else {
+                canOpenChest = false;
                 canPickKey = false;
             }
-        }
 
+        } else {
+                canOpenChest = false;
+                canPickKey = false;
+        }
         if (Input.GetKeyDown("q")){
             if (humming_crystal_count < humming_crystal.Length){
                 Instantiate(humming_crystal[humming_crystal_count], transform.position, Quaternion.identity);

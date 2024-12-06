@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Battery : MonoBehaviour
+public class UI : MonoBehaviour
 {
     public Slider batterySlider;
 
@@ -11,7 +11,7 @@ public class Battery : MonoBehaviour
 
     public Text batteryText;
 
-    public Text keyText;
+    public Text promptText;
 
     [SerializeField] private LidarScanner scannerScript;
 
@@ -20,6 +20,7 @@ public class Battery : MonoBehaviour
     private List<int> keys;
 
     public bool canPickKey;
+    public bool canOpenChest;
 
     private float maxValue;
 
@@ -31,16 +32,11 @@ public class Battery : MonoBehaviour
 
     void updateKeySlots()
     {
-        for (int i = 0; i < keys.Count; i++)
-        {
-            int index = keys[i];
-            if (index == 3 || index == 4 || index == 5)
-            {
-                keysPanel.transform.GetChild(keys[i] - 3).gameObject.SetActive(true);
-            }
-            else
-            {
-                keysPanel.transform.GetChild(keys[i] - 3).gameObject.SetActive(false);
+        for (int i=3; i<=5; i++){
+            if (keys.Contains(i)){
+                keysPanel.transform.GetChild(i-3).gameObject.SetActive(true);
+            } else {
+                keysPanel.transform.GetChild(i-3).gameObject.SetActive(false);
             }
         }
     }
@@ -60,15 +56,17 @@ public class Battery : MonoBehaviour
     {
         keys = playerScript.keys;
         canPickKey = playerScript.canPickKey;
+        canOpenChest = playerScript.canOpenChest;
         SetBattery(scannerScript.pointCount);
         updateKeySlots();
         if (canPickKey)
         {
-            keyText.text = "Press E to pick up key";
+            promptText.text = "Press E to pick up key";
         }
-        else
-        {
-            keyText.text = "";
+        else if (canOpenChest){
+            promptText.text = "Press E to open";
+        } else {
+            promptText.text = "";
         }
     }
 }

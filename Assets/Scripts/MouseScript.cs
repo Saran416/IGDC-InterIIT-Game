@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseScript : MonoBehaviour
 {
     [Range(100f, 1000f)] public float sens;
+    public Slider sensitivity;
     public Transform playerBody;
 
     private float xRotation = 0f;
@@ -16,6 +18,8 @@ public class MouseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sens = sensitivity.value;
+
         float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime; 
         float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime; 
 
