@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI elements")]
     public Text artifact_scanned_text;
+    public GameObject PauseMenu;
+    bool isPaused = false;
 
     [Header("PlayerDeath")]
     public Animation canvas_anim;
@@ -35,6 +37,12 @@ public class GameManager : MonoBehaviour
     public float static_line_closerate = 0.2f;
 
 
+
+    void Update(){
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            onPause();
+        }
+    }
 
     public void PlayerDeath(){
         StartCoroutine(StaticClose(static_line_closerate));
@@ -46,6 +54,21 @@ public class GameManager : MonoBehaviour
     public void ArtifactScanned(){
         articfacts_scanned++;
         artifact_scanned_text.text = $"Artifacts Scanned : {articfacts_scanned}";
+        if (articfacts_scanned >= 5){
+            GameWin();
+        }
+    }
+
+    public void GameWin(){
+        Debug.Log("You won");
+    }
+
+    public void onPause(){
+        isPaused = !isPaused;
+        Cursor.lockState = !isPaused ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = isPaused;
+        PauseMenu.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
     }
 
     IEnumerator StaticClose(float rate){
