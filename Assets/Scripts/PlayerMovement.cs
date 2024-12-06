@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Humming Crystals")]
     [SerializeField] public GameObject[] humming_crystal;
     [SerializeField] public Text humming_crystal_text;
+    private AudioSource audioSource;
     int humming_crystal_count = 0;
 
     public List<int> keys;
@@ -49,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         lastSoundStart = -soundDuration - 1;
         lastPunchTime = -punchDelay - 1;
         keys = new List<int>();
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -77,11 +78,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (move != Vector3.zero)
         {
+            audioSource.loop = true;
+            audioSource.Play(1);
             if (Time.realtimeSinceStartup > lastSoundStart + soundDuration)
             {
                 lastSoundStart = Time.realtimeSinceStartup;
                 SpawnSoundWave();
             }
+        }
+        else{
+            audioSource.Stop();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.realtimeSinceStartup > lastPunchTime + punchDelay)
@@ -104,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
                 canPickKey = true;
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    objectHit.GetComponent<AudioSource>().Play();
                     keys.Add(objectHit.gameObject.layer - 10);
                     Destroy(objectHit.parent.parent.gameObject);
                 }
@@ -114,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
                     canOpenChest = true;
                     if (Input.GetKeyDown(KeyCode.E)){
                         objectHit.gameObject.GetComponentInParent<Animation>().Play("Open");
+                        objectHit.GetComponent<AudioSource>().Play();
                         keys.Remove(objectHit.gameObject.layer-10);
                     }
                 }

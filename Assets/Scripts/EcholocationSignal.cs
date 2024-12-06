@@ -21,6 +21,7 @@ public class EcholocationSignal : MonoBehaviour
     [SerializeField] float heartBeatDuration = 1;
     [SerializeField] float tagWaveRadius = 30;
     [SerializeField] float tagWaveDuration = 4;
+    private AudioSource audioSource;
     private float lastHeartBeatTime;
 
 
@@ -31,6 +32,7 @@ public class EcholocationSignal : MonoBehaviour
         lastHeartBeatTime = -heartBeatDuration - 1;
         objectsToDelete = new List<Vector2>();
         objectsDetected = new List<Vector2>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,11 +50,13 @@ public class EcholocationSignal : MonoBehaviour
         if (objectsDetected.Count - objectsToDelete.Count > maximumSounds && !player_script.safe){
             Debug.Log("if works\n");
             if (!isAggro){
+                audioSource.Play(1);
                 SpawnTagWave();
             }
             isAggro = true;
         }
         if (player_script.safe){
+            audioSource.Stop();
             isAggro = false;
         }
 
