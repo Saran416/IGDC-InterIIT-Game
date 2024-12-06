@@ -7,6 +7,8 @@ public class Battery : MonoBehaviour
 {
     public Slider batterySlider;
 
+    public Text batteryText;
+
     [SerializeField] private LidarScanner scannerScript;
 
     private float maxValue;
@@ -14,12 +16,14 @@ public class Battery : MonoBehaviour
     public void SetBattery(float battery)
     {
         batterySlider.value = maxValue - battery;
+        batteryText.text = (maxValue - battery).ToString();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         batterySlider.maxValue = scannerScript.maxPoints;
+        batterySlider.value = scannerScript.maxPoints;
         maxValue = scannerScript.maxPoints;
     }
 
