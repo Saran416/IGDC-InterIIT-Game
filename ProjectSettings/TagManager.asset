@@ -8,6 +8,7 @@ TagManager:
   - Enemy Body
   - BreakableWall
   - BreakableWallBack
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - 
   - Enemy
   - 
-  - 
+  - Purple
   - 
   - 
   - WallBack
