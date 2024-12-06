@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using System;
+using UnityEngine.UI;
 using Unity.VisualScripting;
 //using System.Numerics;
 
@@ -26,6 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] public Camera leCam;
     [SerializeField] public bool safe;
+
+    [Header("Humming Crystals")]
+    [SerializeField] public GameObject[] humming_crystal;
+    [SerializeField] public Text humming_crystal_text;
+    int humming_crystal_count = 0;
+
     public List<int> keys;
     public bool canPickKey;
 
@@ -103,6 +110,17 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 canPickKey = false;
+            }
+        }
+
+        if (Input.GetKeyDown("q")){
+            if (humming_crystal_count < humming_crystal.Length){
+                Instantiate(humming_crystal[humming_crystal_count], transform.position, Quaternion.identity);
+                humming_crystal_count++;
+                humming_crystal_text.text = $"Humming Crystals Left : {humming_crystal.Length - humming_crystal_count}";
+                if (humming_crystal.Length - humming_crystal_count <= 0){
+                    humming_crystal_text.color = Color.red;
+                }
             }
         }
 
@@ -250,6 +268,12 @@ public class PlayerMovement : MonoBehaviour
 
 
         Destroy(echoLocator, soundDuration + 1);
+    }
+
+    void OnTriggerEnter(Collider col){
+        if (col.gameObject.tag == "Enemy Body"){
+            GameManager.Instance.PlayerDeath();
+        }
     }
 
 }

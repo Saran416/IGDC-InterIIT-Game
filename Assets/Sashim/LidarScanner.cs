@@ -86,6 +86,10 @@ public class LidarScanner : MonoBehaviour
                         lidarPointsColor.Add(colors[0]);
                         break;
                 }
+
+                if (hit.collider.gameObject.tag == "artifact"){
+                    hit.collider.SendMessage("Scan");
+                }
             }
             lidar_vfx.Play();
             // for (int i = 0; i < maxPoints; i++){
