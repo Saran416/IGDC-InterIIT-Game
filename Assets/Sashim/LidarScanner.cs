@@ -23,11 +23,12 @@ public class LidarScanner : MonoBehaviour
     int pointCountProp;
     float lastPointTime = 0f;
 
-    int pointCount = 0;
+    public int pointCount = 0;
     GraphicsBuffer positionBuffer;
     GraphicsBuffer directionBuffer;
     GraphicsBuffer colorBuffer;
-    void Awake(){
+    void Awake()
+    {
 
         positionBufferProp = Shader.PropertyToID("positionBuffer");
         colorBufferProp = Shader.PropertyToID("colorBuffer");
@@ -49,17 +50,20 @@ public class LidarScanner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lidar_vfx.SetInt(pointCountProp, pointCount-1);
-        if (Input.GetKey(KeyCode.Space) && pointCount < maxPoints && Time.time - lastPointTime >= lidarCooldown){
+        lidar_vfx.SetInt(pointCountProp, pointCount - 1);
+        if (Input.GetKey(KeyCode.Space) && pointCount < maxPoints && Time.time - lastPointTime >= lidarCooldown)
+        {
             Vector3 direction = GetTargetDirection();
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, direction, out hit)){
+            if (Physics.Raycast(transform.position, direction, out hit))
+            {
                 lidarPoints.Add(hit.point);
                 pointAge.Add(pointLife);
                 pointCount++;
                 lastPointTime = Time.time;
-                
-                switch (hit.collider.gameObject.layer) {
+
+                switch (hit.collider.gameObject.layer)
+                {
                     case 11:
                         lidarPointsColor.Add(colors[1]);
                         break;
@@ -93,9 +97,11 @@ public class LidarScanner : MonoBehaviour
             // }
         }
 
-        for (int i = 0; i < pointCount; i++){
+        for (int i = 0; i < pointCount; i++)
+        {
             pointAge[i] -= Time.deltaTime;
-            if (pointAge[i] <= 0){
+            if (pointAge[i] <= 0)
+            {
                 pointAge.RemoveAt(i);
                 lidarPoints.RemoveAt(i);
                 lidarPointsColor.RemoveAt(i);
@@ -107,17 +113,20 @@ public class LidarScanner : MonoBehaviour
         colorBuffer.SetData(lidarPointsColor);
         lidar_vfx.SetGraphicsBuffer(colorBufferProp, colorBuffer);
         lidar_vfx.SetGraphicsBuffer(positionBufferProp, positionBuffer);
-        
+
     }
 
-    Vector3 GetTargetDirection(){
+    Vector3 GetTargetDirection()
+    {
         Vector3 x_off = transform.right * Random.Range(-H_OFFSET, H_OFFSET);
         Vector3 y_off = transform.up * Random.Range(-V_OFFSET, V_OFFSET);
         return transform.forward + x_off + y_off;
     }
 
-    void OnDrawGizmos(){
-        for (int i = 0; i < lidarPoints.Count; i++){
+    void OnDrawGizmos()
+    {
+        for (int i = 0; i < lidarPoints.Count; i++)
+        {
             Gizmos.DrawSphere(lidarPoints[i], 0.1f);
         }
     }
