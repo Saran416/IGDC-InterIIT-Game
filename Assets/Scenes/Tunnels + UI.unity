@@ -8823,13 +8823,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lidar_vfx: {fileID: 1862490605}
-  V_OFFSET: 0.3
-  H_OFFSET: 0.3
+  V_OFFSET: 0.2
+  H_OFFSET: 0.2
   maxPoints: 8000
   lidarPoints: []
   lidarPointsColor: []
   pointLife: 30
-  lidarCooldown: 0.001
+  lidarCooldown: 0.0001
   colors:
   - {r: 0, g: 1, b: 0.96862745, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -14162,7 +14162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1133493202
 Light:
   m_ObjectHideFlags: 0
