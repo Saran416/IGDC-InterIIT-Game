@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public Animation canvas_anim;
     public Material static_mat;
     public float static_line_closerate = 0.2f;
+    public AudioSource playerDeath;
 
 
 
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(static_mat.HasFloat("_static_lines "));
         while (static_mat.GetFloat("_static_lines") > 1){
             static_mat.SetFloat("_static_lines", static_mat.GetFloat("_static_lines") - rate);
+            playerDeath.volume += 0.1f;
             yield return new WaitForSeconds(0.05f);
         }
         static_mat.SetFloat("_static_lines", 1f);
