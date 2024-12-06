@@ -107,6 +107,13 @@ public class PlayerMovement : MonoBehaviour
                     Destroy(objectHit.parent.parent.gameObject);
                 }
             }
+            if (objectHit.gameObject.tag == "chest"){
+                // Show "E to open"
+                if (Input.GetKeyDown(KeyCode.E)){
+                    objectHit.gameObject.GetComponentInParent<Animation>().Play("Open");
+                }
+            }
+            
             else
             {
                 canPickKey = false;
