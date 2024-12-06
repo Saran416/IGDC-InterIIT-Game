@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7162106876330592396}
   - component: {fileID: 1625827436245734754}
   m_Layer: 0
-  m_Name: Key
+  m_Name: Key Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,11 +164,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -1504981713932161579, guid: b1e557b1effb59a4999ed0cf349ac321,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7656da40c74d70e48b4f1f00de326449, type: 2}
     - target: {fileID: -927199367670048503, guid: b1e557b1effb59a4999ed0cf349ac321,
         type: 3}
       propertyPath: m_Name
