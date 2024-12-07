@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +36,6 @@ public class GameManager : MonoBehaviour
     public Material static_mat;
     public float static_line_closerate = 0.2f;
     public AudioSource playerDeath;
-    public AudioSource thud_sfx;
 
 
 
@@ -50,7 +48,6 @@ public class GameManager : MonoBehaviour
     public void PlayerDeath(){
         StartCoroutine(StaticClose(static_line_closerate));
         canvas_anim.Play("DeathScreen");
-        thud_sfx.Play();
         player.GetComponentInChildren<MouseScript>().enabled = false;
         player.GetComponent<PlayerMovement>().enabled = false;
     }
@@ -73,14 +70,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = isPaused;
         PauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0 : 1;
-    }
-
-    public void MainMenu(){
-        SceneManager.LoadScene(0);
-    }
-
-    public void Restart(){
-        SceneManager.LoadScene(1);
     }
 
     IEnumerator StaticClose(float rate){
