@@ -32,16 +32,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public GameObject[] humming_crystal;
     [SerializeField] public Text humming_crystal_text;
     private AudioSource audioSource;
+
+    public AudioSource chest_sfx;
     int humming_crystal_count = 0;
 
     public List<int> keys;
+    public AudioSource key_sfx;
     public bool canPickKey;
     public bool canOpenChest;
+
+    public bool isPointingChest;
 
     private bool isGrounded;
     private float lastSoundStart;
 
     private float lastPunchTime;
+
+    public int chestSelected;
 
     void Start()
     {
@@ -86,7 +93,8 @@ public class PlayerMovement : MonoBehaviour
                 SpawnSoundWave();
             }
         }
-        else{
+        else
+        {
             audioSource.Stop();
         }
 
@@ -110,36 +118,54 @@ public class PlayerMovement : MonoBehaviour
                 canPickKey = true;
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    objectHit.GetComponent<AudioSource>().Play();
+                    key_sfx.Play();
                     keys.Add(objectHit.gameObject.layer - 10);
                     Destroy(objectHit.parent.parent.gameObject);
                 }
             }
-            else if (objectHit.gameObject.tag == "chest"){
+            else if (objectHit.gameObject.tag == "chest")
+            {
                 // Show "E to open"
-                if (keys.Contains(objectHit.gameObject.layer-10) ){
+                isPointingChest = true;
+                if (keys.Contains(objectHit.gameObject.layer - 10))
+                {
                     canOpenChest = true;
-                    if (Input.GetKeyDown(KeyCode.E)){
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        chest_sfx.Play();
                         objectHit.gameObject.GetComponentInParent<Animation>().Play("Open");
-                        objectHit.GetComponent<AudioSource>().Play();
-                        keys.Remove(objectHit.gameObject.layer-10);
+                        keys.Remove(objectHit.gameObject.layer - 10);
                     }
                 }
-            }else {
+                else
+                {
+                    chestSelected = objectHit.gameObject.layer - 10;
+                    canOpenChest = false;
+                }
+            }
+            else
+            {
+                isPointingChest = false;
                 canOpenChest = false;
                 canPickKey = false;
             }
 
-        } else {
-                canOpenChest = false;
-                canPickKey = false;
         }
-        if (Input.GetKeyDown("q")){
-            if (humming_crystal_count < humming_crystal.Length){
+        else
+        {
+            canOpenChest = false;
+            canPickKey = false;
+            isPointingChest = false;
+        }
+        if (Input.GetKeyDown("q"))
+        {
+            if (humming_crystal_count < humming_crystal.Length)
+            {
                 Instantiate(humming_crystal[humming_crystal_count], transform.position, Quaternion.identity);
                 humming_crystal_count++;
                 humming_crystal_text.text = $"Humming Crystals Left : {humming_crystal.Length - humming_crystal_count}";
-                if (humming_crystal.Length - humming_crystal_count <= 0){
+                if (humming_crystal.Length - humming_crystal_count <= 0)
+                {
                     humming_crystal_text.color = Color.red;
                 }
             }
@@ -288,8 +314,10 @@ public class PlayerMovement : MonoBehaviour
         Destroy(echoLocator, soundDuration + 1);
     }
 
-    void OnTriggerEnter(Collider col){
-        if (col.gameObject.tag == "Enemy Body"){
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Enemy Body")
+        {
             GameManager.Instance.PlayerDeath();
         }
     }

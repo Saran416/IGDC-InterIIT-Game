@@ -13,6 +13,8 @@ public class UI : MonoBehaviour
 
     public Text promptText;
 
+    private bool isPointingChest;
+
     [SerializeField] private LidarScanner scannerScript;
 
     [SerializeField] private PlayerMovement playerScript;
@@ -32,11 +34,15 @@ public class UI : MonoBehaviour
 
     void updateKeySlots()
     {
-        for (int i=3; i<=5; i++){
-            if (keys.Contains(i)){
-                keysPanel.transform.GetChild(i-3).gameObject.SetActive(true);
-            } else {
-                keysPanel.transform.GetChild(i-3).gameObject.SetActive(false);
+        for (int i = 3; i <= 5; i++)
+        {
+            if (keys.Contains(i))
+            {
+                keysPanel.transform.GetChild(i - 3).gameObject.SetActive(true);
+            }
+            else
+            {
+                keysPanel.transform.GetChild(i - 3).gameObject.SetActive(false);
             }
         }
     }
@@ -57,16 +63,43 @@ public class UI : MonoBehaviour
         keys = playerScript.keys;
         canPickKey = playerScript.canPickKey;
         canOpenChest = playerScript.canOpenChest;
+        isPointingChest = playerScript.isPointingChest;
         SetBattery(scannerScript.pointCount);
         updateKeySlots();
+        Debug.Log("isPointingChest: " + isPointingChest);
         if (canPickKey)
         {
             promptText.text = "Press E to pick up key";
         }
-        else if (canOpenChest){
-            promptText.text = "Press E to open";
-        } else {
+        else
+        {
             promptText.text = "";
         }
+        if (isPointingChest)
+        {
+            if (canOpenChest)
+            {
+                promptText.text = "Press E to open";
+            }
+            else
+            {
+                int color = playerScript.chestSelected;
+                string c;
+                if (color == 3)
+                {
+                    c = "Purple";
+                }
+                else if (color == 4)
+                {
+                    c = "Pink";
+                }
+                else
+                {
+                    c = "Blue";
+                }
+                promptText.text = "You need a " + c + " key";
+            }
+        }
+
     }
 }
