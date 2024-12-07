@@ -140,7 +140,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     - _intersectionDepth: 0.5
-    - _static_lines: 1
+    - _static_lines: 30
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

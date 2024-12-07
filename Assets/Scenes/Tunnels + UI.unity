@@ -505,6 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1970785303125737000, guid: dea38bc162435444a8cf43b81fe70fb9, type: 3}
+    - {fileID: 7205948532075696407, guid: dea38bc162435444a8cf43b81fe70fb9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4805,6 +4806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814417747340063830, guid: bc601338671f3624792bf7ba518c74d9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5836972850639135191, guid: bc601338671f3624792bf7ba518c74d9,
         type: 3}
@@ -12806,6 +12812,11 @@ PrefabInstance:
       propertyPath: 'Moveables.Array.data[1]'
       value: 
       objectReference: {fileID: 1999659323}
+    - target: {fileID: 1125577027986351613, guid: 671006efff3ef62488c9b8b4a499c10d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3570721178996218808, guid: 671006efff3ef62488c9b8b4a499c10d,
         type: 3}
       propertyPath: m_Name
@@ -12868,7 +12879,9 @@ PrefabInstance:
       objectReference: {fileID: 775474627}
     m_RemovedComponents:
     - {fileID: 344504910241936722, guid: 671006efff3ef62488c9b8b4a499c10d, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7649763944154829979, guid: 671006efff3ef62488c9b8b4a499c10d, type: 3}
+    - {fileID: 6829583347552422022, guid: 671006efff3ef62488c9b8b4a499c10d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 671006efff3ef62488c9b8b4a499c10d, type: 3}
@@ -16992,6 +17005,11 @@ PrefabInstance:
     - target: {fileID: 4517860329868026815, guid: 517f5b7873d118a46b0ec74bba05c09a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836972850639135191, guid: 517f5b7873d118a46b0ec74bba05c09a,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5836972850639135191, guid: 517f5b7873d118a46b0ec74bba05c09a,
