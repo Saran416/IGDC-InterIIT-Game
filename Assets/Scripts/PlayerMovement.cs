@@ -285,9 +285,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
-
-
         Destroy(echoLocator, soundDuration + 1);
     }
 

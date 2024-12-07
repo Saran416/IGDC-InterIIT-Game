@@ -80,7 +80,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void MainMenu(){
-        SceneManager.LoadScene(0);
+        StartCoroutine(StaticClose(static_line_closerate));
+        canvas_anim.Play("WinScreen");
+        player.GetComponentInChildren<MouseScript>().enabled = false;
+        player.GetComponent<PlayerMovement>().enabled = false;
     }
 
     IEnumerator StaticClose(float rate){
