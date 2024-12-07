@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource audioSource;
 
     public AudioSource chest_sfx;
+    public AudioSource punch_sfx;
     int humming_crystal_count = 0;
 
     public List<int> keys;
@@ -101,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.realtimeSinceStartup > lastPunchTime + punchDelay)
         {
             lastPunchTime = Time.realtimeSinceStartup;
+            punch_sfx.Play();
             //Debug.Log("Something was punched bro");
             Punch();
 
