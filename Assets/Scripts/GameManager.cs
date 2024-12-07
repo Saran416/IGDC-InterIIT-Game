@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)){
             onPause();
         }
+        if (Input.GetKeyDown(KeyCode.M)){
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void PlayerDeath(){
