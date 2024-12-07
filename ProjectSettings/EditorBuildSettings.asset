@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Echolocation.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Main Menu.unity
+    guid: 7938d7cb8ef9f24488ae9b10359b675c
+  - enabled: 1
+    path: Assets/Scenes/Tunnels + UI.unity
+    guid: f44278f60859025408401857821de99e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
