@@ -11,6 +11,7 @@ TagManager:
   - Key
   - artifact
   - chest
+  - grabbables
   layers:
   - Default
   - TransparentFX

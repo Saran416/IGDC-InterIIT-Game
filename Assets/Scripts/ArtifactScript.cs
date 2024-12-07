@@ -8,10 +8,15 @@ public class ArtifactScript : MonoBehaviour
     float scanned_amount = 0;
     bool is_scanned = false;
 
-    void Scan(){
-        if (is_scanned){return;}
+    public AudioSource after_scan_sound;
+
+    void Scan()
+    {
+        if (is_scanned) { return; }
         scanned_amount++;
-        if (scanned_amount >= total_scan_particles){
+        if (scanned_amount >= total_scan_particles)
+        {
+            after_scan_sound.Play();
             Debug.Log("Scanned", gameObject);
             GameManager.Instance.ArtifactScanned();
             is_scanned = true;
