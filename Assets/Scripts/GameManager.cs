@@ -8,9 +8,12 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
-    public static GameManager Instance{
-        get{
-            if (instance == null){
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
                 Debug.LogError("GameManager not found");
             }
 
@@ -18,7 +21,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Awake(){
+    private void Awake()
+    {
         instance = this;
 
         static_mat.SetFloat("_static_lines", 30f);
@@ -41,16 +45,20 @@ public class GameManager : MonoBehaviour
 
 
 
-    void Update(){
-        if (Input.GetKeyDown(KeyCode.Escape)){
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             onPause();
         }
-        if (Input.GetKeyDown(KeyCode.M)){
+        if (Input.GetKeyDown(KeyCode.M))
+        {
             SceneManager.LoadScene(0);
         }
     }
 
-    public void PlayerDeath(){
+    public void PlayerDeath()
+    {
         StartCoroutine(StaticClose(static_line_closerate));
         canvas_anim.Play("DeathScreen");
         thud_sfx.Play();
@@ -58,19 +66,27 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = false;
     }
 
-    public void ArtifactScanned(){
+    public void ArtifactScanned()
+    {
         articfacts_scanned++;
         artifact_scanned_text.text = $"Artifacts Scanned : {articfacts_scanned}";
-        if (articfacts_scanned >= 5){
+        if (articfacts_scanned >= 5)
+        {
             GameWin();
         }
     }
 
-    public void GameWin(){
+    public void GameWin()
+    {
         Debug.Log("You won");
+        StartCoroutine(StaticClose(static_line_closerate));
+        canvas_anim.Play("WinScreen");
+        player.GetComponentInChildren<MouseScript>().enabled = false;
+        player.GetComponent<PlayerMovement>().enabled = false;
     }
 
-    public void onPause(){
+    public void onPause()
+    {
         isPaused = !isPaused;
         Cursor.lockState = !isPaused ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = isPaused;
@@ -78,20 +94,23 @@ public class GameManager : MonoBehaviour
         Time.timeScale = isPaused ? 0 : 1;
     }
 
-    public void Restart(){
+    public void Restart()
+    {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
-    public void MainMenu(){
-        StartCoroutine(StaticClose(static_line_closerate));
-        canvas_anim.Play("WinScreen");
-        player.GetComponentInChildren<MouseScript>().enabled = false;
-        player.GetComponent<PlayerMovement>().enabled = false;
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
-    IEnumerator StaticClose(float rate){
+    IEnumerator StaticClose(float rate)
+    {
         Debug.Log(static_mat.HasFloat("_static_lines "));
-        while (static_mat.GetFloat("_static_lines") > 1){
+        while (static_mat.GetFloat("_static_lines") > 1)
+        {
             static_mat.SetFloat("_static_lines", static_mat.GetFloat("_static_lines") - rate);
             playerDeath.volume += 0.1f;
             yield return new WaitForSeconds(0.05f);
